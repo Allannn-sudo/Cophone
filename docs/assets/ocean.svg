@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="104" viewBox="0 0 1200 104" role="img" aria-labelledby="title desc">
+<title id="title">cophone 海面与鲸鱼尾鳍</title>
+<desc id="desc">深蓝色海面上流动着青色波纹，右侧一枚鲸鱼尾鳍跃出水面。</desc>
+<defs>
+<linearGradient id="sea" x2="1" y2="1"><stop stop-color="#081d46"/><stop offset="1" stop-color="#0b3e66"/></linearGradient>
+<linearGradient id="tail" x2="1" y2="1"><stop stop-color="#b3fff0"/><stop offset="1" stop-color="#18b6c9"/></linearGradient>
+<clipPath id="bounds"><rect width="1200" height="104" rx="20"/></clipPath>
+</defs>
+<g clip-path="url(#bounds)">
+<rect width="1200" height="104" fill="url(#sea)"/>
+<path d="M-30 66 Q120 26 270 66 T570 66 T870 66 T1230 66 V120 H-30Z" fill="#17a7b3" opacity=".12"/>
+<path d="M-30 83 Q120 43 270 83 T570 83 T870 83 T1230 83" fill="none" stroke="#66d6d0" stroke-width="1.5" opacity=".42"/>
+<path d="M-30 95 Q120 55 270 95 T570 95 T870 95 T1230 95" fill="none" stroke="#88e7df" opacity=".2"/>
+<path d="M1010 71 C1017 54 1015 42 1004 36 C982 35 966 24 962 9 C981 11 1002 17 1014 33 C1021 17 1040 10 1058 8 C1056 28 1042 39 1025 42 C1019 51 1021 62 1027 71 Q1019 75 1010 71Z" fill="url(#tail)"/>
+<path d="M985 78 Q1018 66 1050 78" fill="none" stroke="#a6f6eb" stroke-width="1.5" opacity=".55"/>
+<circle cx="99" cy="30" r="2" fill="#a6f6eb" opacity=".6"/><circle cx="356" cy="22" r="1.5" fill="#a6f6eb" opacity=".4"/><circle cx="744" cy="36" r="2" fill="#a6f6eb" opacity=".4"/><circle cx="1137" cy="28" r="1.5" fill="#a6f6eb" opacity=".65"/>
+</g>
+</svg>

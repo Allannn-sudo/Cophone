@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>cophone · 使用回顾观察</title>
+<style>
+:root{color-scheme:dark;font:16px/1.6 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:#e5f3fc;background:#071422}*{box-sizing:border-box}body{margin:0;padding:40px 6vw}main{max-width:1200px;margin:auto}header{display:flex;justify-content:space-between;align-items:center;gap:20px}h1{font-size:30px;line-height:1.2;margin:8px 0}h2{font-size:18px;margin:0 0 16px}p{margin:8px 0}.eyebrow{color:#56dbcf;font-size:13px;letter-spacing:2px}.muted{color:#97adbf}.tag{border:1px solid #355267;border-radius:20px;padding:6px 14px;font-size:13px}.hero{margin:30px 0;padding:26px;border:1px solid #285069;border-radius:18px;background:linear-gradient(110deg,#102c41,#0a1e2d)}.status{font-size:29px;font-weight:650}.progress{height:6px;background:#263a48;border-radius:4px;margin:18px 0}.progress i{display:block;width:0;height:100%;background:#52d7c1;border-radius:4px;transition:width .3s}.grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}.panel{border:1px solid #203b4e;border-radius:16px;padding:24px;background:#0c1d2b}.event{border-top:1px solid #294052;padding:14px 0;overflow-wrap:anywhere}.event strong{display:block;font-size:18px}.event small{color:#91a9ba}.empty{color:#91a9ba;padding:18px 0}.log{display:grid;grid-template-columns:74px 42px 1fr;gap:8px;padding:11px 0;border-top:1px solid #1b3447;font-size:14px}.log time{color:#94adbf}.badge{color:#51d4c7}.error{color:#ffb38d}footer{margin-top:25px;font-size:13px;color:#8ca6ba}#error:empty{display:none}@media(max-width:800px){body{padding:24px 18px}.grid{grid-template-columns:1fr}header{align-items:flex-start}.status{font-size:23px}h1{font-size:24px}}
+</style>
+<main>
+<header><div><div class="eyebrow">cophone / iOS 6</div><h1>照常用手机，回到桌面收回顾</h1><p class="muted">手机执行，电脑只读观察 · 这里不是虚拟第二屏</p></div><span class="tag" id="connection">等待手机</span></header>
+<section class="hero"><div class="status" id="status">安装 cophone 0.4.0 和后台服务</div><p id="instruction" class="muted">点开始 → Safari / oldbili 正常浏览 → 回桌面停留 6 秒。</p><div class="progress"><i id="bar"></i></div><div id="summary">尚未收到真实执行记录</div><p id="error" class="error"></p><p id="freshness" class="muted"></p></section>
+<div class="grid"><section class="panel"><h2>本轮使用活动</h2><div id="results" class="empty">这里显示应用时段与 Safari 新增历史；备忘录写入后显示回读凭据。</div></section><section class="panel"><h2>手机执行时间线</h2><div id="logs" class="empty">等待本轮日志；不会模拟执行动画。</div></section></div>
+<footer>演示：正常浏览手机，再回桌面等待通知，打开系统备忘录核对使用回顾。<br>越狱服务按用户主动开启的轮次记录；无录屏、键盘采集、云端上传或 LLM。电脑经 USB 只读 CoPhone 自己的文件共享，不在手机暴露网络端口。</footer>
+</main>
+<script>
+const $=id=>document.getElementById(id);
+const names={idle:'准备就绪',awaiting_leave:'本轮已开始，可以按 Home',recording:'正在记录本轮应用使用',finishing:'正在写入系统备忘录',completed:'备忘录已保存并回读确认',failed:'本轮未完成',paused:'本轮已暂停',cancelled:'本轮已取消'};
+const when=value=>new Date(value*1000).toLocaleString('zh-CN',{timeZone:'Asia/Shanghai',hour12:false});
+function line(parent,tag,text,cls){const element=document.createElement(tag);element.textContent=text;if(cls)element.className=cls;parent.appendChild(element);return element;}
+function render(data){
+ $('connection').textContent=data.connected?'USB 状态已读取':'未连接 / 服务可能停止';
+ $('freshness').textContent=data.connected?'最近读取 · '+when(data.receivedAt):(data.receivedAt?'当前显示历史快照 · 最后收到 '+when(data.receivedAt)+'。':'')+data.message;
+ const s=data.state;if(!s)return;
+ $('status').textContent=(data.connected?'':'最后记录：')+(names[s.status]||s.status);
+ $('instruction').textContent=s.status==='awaiting_leave'?'现在按 Home，照常用 Safari、oldbili 等应用。':s.status==='completed'?'请在手机打开系统备忘录，查看「CoPhone 使用回顾」。':'回到桌面连续停留 6 秒才结束；切换应用和锁屏会重置倒计时。';
+ $('summary').textContent='应用时段 '+(s.visits||[]).length+' 段 · Safari 新增页面 '+(s.pages||[]).length+' 条 · 版本 '+s.version;
+ $('error').textContent=s.error||'';$('bar').style.width=s.status==='completed'?'100%':'0%';
+ $('results').replaceChildren();$('results').className='';
+ if(s.receipt?.verified){const box=line($('results'),'div','','event');line(box,'strong','✓ '+(s.receipt.title||'CoPhone 使用回顾'));line(box,'div','本机备忘录正文已独立回读一致','muted');line(box,'small','GUID：'+s.receipt.guid);}
+ for(const v of s.visits||[]){const box=line($('results'),'div','','event');line(box,'strong',v.name);line(box,'div',when(v.start)+' — '+when(v.end));line(box,'small','约 '+Math.max(0,Math.round(v.end-v.start))+' 秒 · 系统前台采样');}
+ for(const p of s.pages||[]){const box=line($('results'),'div','','event');line(box,'strong',p.title);line(box,'div',p.url);line(box,'small',when(p.time)+' · Safari 新增历史');}
+ if(!(s.visits||[]).length)line($('results'),'p','等待本轮实际使用活动。','empty');
+ $('logs').replaceChildren();$('logs').className='';
+ const logs=s.logs||[];if(!logs.length)line($('logs'),'p','尚无本轮日志。','empty');
+ for(const item of logs){const box=line($('logs'),'div','','log');line(box,'time',new Date(item.time*1000).toLocaleTimeString('zh-CN',{timeZone:'Asia/Shanghai',hour12:false}));line(box,'span','手机','badge');line(box,'span',item.message);}
+}
+
+async function poll(){try{const response=await fetch('/api/state',{cache:'no-store',signal:AbortSignal.timeout(4000)});if(!response.ok)throw Error('HTTP '+response.status);render(await response.json());}catch(error){$('connection').textContent='电脑观察器未响应';$('freshness').textContent='当前页面保留旧内容，不能据此确认最新进度。请检查启动观察器的终端。';}setTimeout(poll,1000);}
+poll();
+</script>
+</html>
