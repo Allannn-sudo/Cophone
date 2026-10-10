@@ -7,7 +7,7 @@
 <p align="center">
   <img src="ios6/assets/icon-rounded-master.png" width="112" alt="cophone 蓝色鲸鱼 Logo" />
 </p>
-<h1 align="center">cophone</h1>
+<h1 align="center">Cophone</h1>
 <p align="center"><strong>你继续用手机，交办的事在后台完成。</strong></p>
 <p align="center">iPhone 4 · iOS 6.1.3 · 手机独立联网 · 国内 AI</p>
 
