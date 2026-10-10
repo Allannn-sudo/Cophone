@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="60" viewBox="0 0 180 60" role="img" aria-labelledby="title">
+<title id="title">简体中文 — SWITCH</title>
+<defs><linearGradient id="button" x2="0" y2="1"><stop stop-color="#ffffff"/><stop offset="1" stop-color="#edf7fb"/></linearGradient></defs>
+<rect x="1" y="4" width="178" height="55" rx="16" fill="#061a36" opacity=".15"/>
+<rect x="1" y="1" width="178" height="55" rx="16" fill="url(#button)" stroke="#b9d4e3"/>
+<path d="M17 2 H163 Q178 2 178 17 V23 Q90 7 2 23 V17 Q2 2 17 2Z" fill="#ffffff" opacity=".08"/>
+<circle cx="26" cy="28" r="17" fill="#d6edf3" opacity=".22"/>
+<path d="M24 39 C27 32 26 28 23 26 C16 25 12 21 12 16 C19 16 24 19 26 24 C29 19 35 16 41 16 C40 23 35 26 30 27 C27 31 28 35 30 39Z" fill="#278c9e"/>
+<g font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans CJK SC','Microsoft YaHei',sans-serif">
+<text x="51" y="28" font-size="17" font-weight="700" fill="#103858">简体中文</text>
+<text x="52" y="43" font-size="8.5" letter-spacing="1.4" fill="#52738b">ZH · SWITCH</text>
+</g><path d="M152 22 l6 6-6 6" fill="none" stroke="#52738b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>

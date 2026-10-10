@@ -1,4 +1,10 @@
 <p align="center">
+  <a href="README.md" title="切换到简体中文"><img src="docs/assets/lang-zh-active.svg" width="156" height="52" alt="简体中文（当前语言）" /></a>
+  &nbsp;
+  <a href="README.en.md" title="Switch to English"><img src="docs/assets/lang-en.svg" width="156" height="52" alt="English / 切换到英文" /></a>
+</p>
+
+<p align="center">
   <img src="ios6/assets/icon-rounded-master.png" width="112" alt="cophone 蓝色鲸鱼 Logo" />
 </p>
 <h1 align="center">cophone</h1>
