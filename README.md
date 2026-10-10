@@ -7,7 +7,7 @@
 
 ![蓝色海面与鲸鱼尾鳍](docs/assets/ocean.svg)
 
-cophone 是一个运行在已越狱 iPhone 4 上的手机 Agent。你在 Safari 浏览、滚动或打字时，它可以在真实 oldbili 进程中搜索视频、读取候选信息、比较推荐，把结果保存到你自己的系统备忘录；也能将选中的网页文字整理成摘要或配图。日常 AI 请求由手机直接发出，Mac 用于部署和可选的执行观察。
+cophone 是一个运行在已越狱 iPhone 4 上的手机 Agent。你在 Safari 浏览、滚动或打字时，它可以通过 oldbili（适用于旧版 iOS 的第三方 B 站客户端），在真实 App 进程中搜索 B 站视频、读取候选信息、比较推荐，把结果保存到你自己的系统备忘录；也能将选中的网页文字整理成摘要或配图。日常 AI 请求由手机直接发出，Mac 用于部署和可选的执行观察。
 
 **为什么选择 iPhone 4**
 
@@ -17,7 +17,7 @@ iPhone 4 一直是我最喜欢的一部手机。它的尺寸、握持感和单�
 
 | 你来交办 | cophone 来完成 |
 | --- | --- |
-| **长按 Home，说一句话** | 自然语言找视频，按真实搜索结果逐轮决策，比较后写入备忘录。 |
+| **长按 Home，说一句话** | 自然语言找 B 站视频，按真实搜索结果逐轮决策，比较后写入备忘录。 |
 | **Safari 选中一段文字** | 在选文菜单确认“整理成摘要 / 整理成图片”，分别保存到备忘录或 cophone 相簿。 |
 | **启动目视官** | 按应用分段整理使用时段、可采集的网页摘录及视频信息，生成回顾笔记。 |
 | **照常使用手机** | 后台完成后发送通知；点击直达本次笔记正文或单张图片，对应系统 App 显示角标。 |
@@ -43,7 +43,7 @@ iPhone 4 一直是我最喜欢的一部手机。它的尺寸、握持感和单�
 flowchart LR
  U[语音 / 自然语言] --> P[手机端 DeepSeek 规划]
  P --> V[当前状态与动作校验]
- V --> A[oldbili 独立搜索控制器]
+ V --> A["oldbili（B 站）独立搜索控制器"]
  A --> O[真实结果 / 加载状态]
  O --> P
  P --> N[系统备忘录保存与回读]
@@ -54,7 +54,7 @@ flowchart LR
 
 **快速部署**
 
-1. **设备限定：已越狱的 iPhone 4 / iOS 6.1.3**。准备 Cydia Substrate、AppSync、OpenSSH、可用 Wi-Fi；视频任务需自行安装 oldbili **2.0.6 / net.iosipa.oldbili**。
+1. **设备限定：已越狱的 iPhone 4 / iOS 6.1.3**。准备 Cydia Substrate、AppSync、OpenSSH、可用 Wi-Fi；视频任务需自行安装 oldbili（第三方 B 站客户端）**2.0.6 / net.iosipa.oldbili**。
 2. 用爱思助手 / iFunBox 安装 `artifacts/ios6/cophone-iOS6-0.10.0-shipping.ipa`。Mac 准备 Python 3，执行 `brew install libimobiledevice libusbmuxd`；连接 USB，双击“安装 cophone 后台.command”。首次加载系统插件需保存内容后手动重载一次桌面。
 3. 打开 cophone，在“设置 → AI 设置”**手动保存自己的 DeepSeek / 百炼北京地域 API Key**。发行包不含个人密钥，也不自动导入配置。
 4. 保留 cophone 在后台即可使用。Mac 双击“查看 cophone 执行画面.command”观察执行，**无需 Codex**；拔掉 USB 后手机任务仍可运行。详见 [部署教程](docs/DEPLOYMENT.md) 与 [Mac 观察软件说明](Mac%20执行观察使用说明.md)。
