@@ -9,12 +9,35 @@
 
 cophone 是一个运行在已越狱 iPhone 4 上的手机 Agent。你在 Safari 浏览、滚动或打字时，它可以在真实 oldbili 进程中搜索视频、读取候选信息、比较推荐，把结果保存到你自己的系统备忘录；也能将选中的网页文字整理成摘要或配图。日常 AI 请求由手机直接发出，Mac 用于部署和可选的执行观察。
 
+**为什么选择 iPhone 4**
+
+iPhone 4 一直是我最喜欢的一部手机。它的尺寸、握持感和单手操作体验，让我觉得手机就该是这样一件轻巧、随身的工具。我也偏爱 iOS 6 拟物化设计的精致感：材质、光影和按钮的细节，让屏幕里的工具带着熟悉的质感与温度。我不喜欢如今动辄“半斤”的大手机，也希望这台喜欢的老设备能继续陪我做新的事情。
+
+我也想借 cophone，向乔帮主时代的产品精神和 Siri 式智能助理的愿景致敬：长按 Home，说出想做的事，助理理解意图、根据实际状态决定下一步，再把办好的结果交到我手里。**我继续用手机，它同时替我办事。** 从我个人的情感出发，这像是在续写乔帮主的一个“遗愿”：让随身的手机成为更懂人、能替人办事的助理。cophone 是我在这台小手机上，为这个愿望迈出的一小步。
+
 | 你来交办 | cophone 来完成 |
 | --- | --- |
 | **长按 Home，说一句话** | 自然语言找视频，按真实搜索结果逐轮决策，比较后写入备忘录。 |
 | **Safari 选中一段文字** | 在选文菜单确认“整理成摘要 / 整理成图片”，分别保存到备忘录或 cophone 相簿。 |
 | **启动目视官** | 按应用分段整理使用时段、可采集的网页摘录及视频信息，生成回顾笔记。 |
 | **照常使用手机** | 后台完成后发送通知；点击直达本次笔记正文或单张图片，对应系统 App 显示角标。 |
+
+**应用界面**
+
+以下为 iPhone 4 / iOS 6.1.3 上 cophone 0.10.0 的真机截图。
+
+<table>
+  <tr>
+    <td align="center"><strong>主页</strong></td>
+    <td align="center"><strong>记录</strong></td>
+    <td align="center"><strong>设置</strong></td>
+  </tr>
+  <tr>
+    <td><img src="docs/screenshots/home.png" width="220" alt="cophone 主页：目视官与交办任务两张入口卡片" /></td>
+    <td><img src="docs/screenshots/history.png" width="220" alt="cophone 记录页：任务结果与本地历史管理" /></td>
+    <td><img src="docs/screenshots/settings.png" width="220" alt="cophone 设置页：AI 设置、语音与 Safari 菜单开关" /></td>
+  </tr>
+</table>
 
 ```mermaid
 flowchart LR
