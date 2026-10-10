@@ -7,7 +7,7 @@
 <p align="center">
   <img src="ios6/assets/icon-rounded-master.png" width="112" alt="cophone blue whale logo" />
 </p>
-<h1 align="center">cophone</h1>
+<h1 align="center">Cophone</h1>
 <p align="center"><strong>Keep using your phone. Let your assistant get things done.</strong></p>
 <p align="center">iPhone 4 · iOS 6.1.3 · Independent on-device networking · DeepSeek &amp; Qwen</p>
 
